@@ -1,7 +1,4 @@
-@extends('layouts.guest')
-
-@section('title', 'Startsida')
-
+<x-guest-layout title="Nytt utseende">
   <div class="container mx-auto my-4">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="lg:text-center">
@@ -32,3 +29,4 @@
         </div>
     </div>
 </div>
+</x-guest-layout>
