@@ -1,6 +1,5 @@
-@extends('layouts.guest')
+<x-guest-layout>
 
-@section('title', 'Startsida')
 
   <livewire:news-banner/>
 
@@ -48,3 +47,5 @@
       @endif
     </div>
   </div>
+
+</x-guest-layout>
