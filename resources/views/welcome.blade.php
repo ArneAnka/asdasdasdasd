@@ -1,6 +1,6 @@
 <x-guest-layout>
 
-
+asdasdas dasd asd asdas dasd as
   <livewire:news-banner/>
 
   <div class="container mx-auto my-4">
