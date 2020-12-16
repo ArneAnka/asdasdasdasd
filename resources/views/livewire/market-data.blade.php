@@ -1,4 +1,4 @@
-<div wire:init="loadMarketData" class="flex flex-row"> <!-- markets -->
+<div wire:init="loadMarketData" class="grid grid-cols-2 md:flex md:flex-row space-y-2"> <!-- markets -->
 @if(!empty($data))
   <!-- Sverige -->
   <div class="flex flex-col items-center flex-1">

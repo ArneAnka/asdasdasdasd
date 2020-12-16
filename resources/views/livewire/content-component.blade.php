@@ -22,7 +22,7 @@
         <p class="text-2xl border-b border-gray-200 uppercase">nyheter</p>
       </div>
 
-        <div class="w-1/4 flex flex-row space-x-2">
+        <div class="auto flex flex-row space-x-2">
             <x-input.text wire:model.debounce.300ms="search" placeholder="sök i nyheter"></x-input.text>
             <x-button.primary wire:click="clear"><x-icon.trash /> rensa</x-button>
         </div>
