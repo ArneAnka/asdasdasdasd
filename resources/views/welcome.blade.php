@@ -1,6 +1,5 @@
 <x-guest-layout>
 
-asdasdas dasd asd asdas dasd as
   <livewire:news-banner/>
 
   <div class="container mx-auto my-4">
@@ -13,7 +12,6 @@ asdasdas dasd asd asdas dasd as
     </div>
   </div>
 
-
   <div class="container mx-auto">
     <div class="flex flex-col bg-gray-200 rounded p-1 md:p-8 lg:p-8 shadow">
 
@@ -25,7 +23,6 @@ asdasdas dasd asd asdas dasd as
       <div class="bg-white mt-5 p-4 rounded shadow">
         <livewire:market-data/>
       </div>
-
 
       <div class="bg-white mt-5 p-4 rounded shadow">
         <livewire:covid19-stats/>
