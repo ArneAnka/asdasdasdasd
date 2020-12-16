@@ -12,7 +12,7 @@ class MarketData extends Component
 
     public function loadMarketData(){
         $this->data = Cache::remember('data', 120, function(){
-            return Http::get('http://127.0.0.1:5000/markets')->json();
+            return Http::get('http://165.22.25.72/markets')->json();
         });
     }
 
