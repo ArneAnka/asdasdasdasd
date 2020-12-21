@@ -133,6 +133,37 @@
       <livewire:shitcoins-loading/>
       @endif
     </tr>
+    <tr wire:init="loadShitCoinDataHexcoin" class="border-b border-gray-400 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 focus:ring-opacity-50">
+        @if(!empty($hexcoin))
+      <td>
+        <span class="flex items-center flex-col md:flex-row m-2">
+            <span>
+                <img src="{{ $hexcoin['image']['small'] }}" style="width: 32px; width: 32px;">
+            </span>
+            <span>
+                &nbsp;Hex&nbsp;<span class="text-gray-400">HEX</span>
+            </span>
+        </span>
+      </td>
+      <td class="">
+        USD {{ number_format($hexcoin['market_data']['current_price']['usd'], 5, ',', '.') }}
+      </td>
+      <td class="@if($hexcoin['market_data']['price_change_percentage_1h_in_currency']['usd'] < 0) text-red-500 @else text-green-500 @endif">
+        {{ round($hexcoin['market_data']['price_change_percentage_1h_in_currency']['usd'], 2) }}%
+      </td>
+      <td class="hidden sm:table-cell @if($hexcoin['market_data']['price_change_percentage_24h_in_currency']['usd'] < 0) text-red-500 @else text-green-500 @endif">
+        {{ round($hexcoin['market_data']['price_change_percentage_24h_in_currency']['usd'], 2) }}%
+      </td>
+      <td class="hidden sm:table-cell @if($hexcoin['market_data']['price_change_percentage_7d_in_currency']['usd'] < 0) text-red-500 @else text-green-500 @endif">
+        {{ round($hexcoin['market_data']['price_change_percentage_7d_in_currency']['usd'], 2) }}%
+      </td>
+      <td class="hidden sm:table-cell">
+        <img src="{{ asset('images/hexcoin_sparkline.svg') }}" alt="">
+      </td>
+      @else
+      <livewire:shitcoins-loading/>
+      @endif
+    </tr>
   </tbody>
 </table>
 

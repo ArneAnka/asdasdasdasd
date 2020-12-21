@@ -12,6 +12,7 @@ class ShitcoinData extends Component
     public $ethereum = [];
     public $dogecoin = [];
     public $litecoin = [];
+    public $hexcoin = [];
 
     public function loadShitCoinDataBitcoin()
     {
@@ -38,6 +39,13 @@ class ShitcoinData extends Component
     {
         $this->litecoin = Cache::remember('litecoin', 300, function(){
             return Http::get('https://api.coingecko.com/api/v3/coins/litecoin?tickers=false&community_data=false&developer_data=false&sparkline=true')->json();
+        });
+    }
+
+    public function loadShitCoinDataHexcoin()
+    {
+        $this->hexcoin = Cache::remember('hexcoin', 300, function(){
+            return Http::get('https://api.coingecko.com/api/v3/coins/hex?tickers=false&community_data=false&developer_data=false&sparkline=true')->json();
         });
     }
 
