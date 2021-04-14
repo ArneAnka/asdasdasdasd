@@ -32,6 +32,7 @@
           @forelse($newsLinks as $news)
           <div>
               <div class="">
+                <img class="w-5 h-5 inline" src="{{ asset("storage/images/" . $news->site . "-favicon.png") }}" alt="">
                 <a class="text-lg underline" href="{{ $news->url }}">{{ $news->topic }}</a> <span>({{ $news->site }})</span>
               </div>
               <div>

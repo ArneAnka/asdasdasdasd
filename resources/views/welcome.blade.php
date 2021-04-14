@@ -45,4 +45,6 @@
     </div>
   </div>
 
+  <livewire:footer/>
+
 </x-guest-layout>
