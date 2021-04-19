@@ -11,6 +11,7 @@ class ShitcoinData extends Component
     public $bitcoin = [];
     public $ethereum = [];
     public $dogecoin = [];
+    public $cardano = [];
     public $litecoin = [];
     public $hexcoin = [];
 
@@ -41,6 +42,16 @@ class ShitcoinData extends Component
         });
         if(!isset($this->dogecoin['market_data']['price_change_percentage_1h_in_currency']['usd'])){
             $this->dogecoin['market_data']['price_change_percentage_1h_in_currency']['usd'] = 0;
+        }
+    }
+
+    public function loadShitCoinDataCardano()
+    {
+        $this->cardano = Cache::remember('cardano', 300, function(){
+            return Http::get('https://api.coingecko.com/api/v3/coins/cardano?tickers=false&community_data=false&developer_data=false&sparkline=true')->json();
+        });
+        if(!isset($this->cardano['market_data']['price_change_percentage_1h_in_currency']['usd'])){
+            $this->cardano['market_data']['price_change_percentage_1h_in_currency']['usd'] = 0;
         }
     }
 

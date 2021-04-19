@@ -4,6 +4,8 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
+        <meta name="description" content="Gratis aggregerad handelsinformation med dagliga sammanställning av nyheter från svenska nyhetssidor.">
+        <meta name="keywords" content="aggregerad, handelsinformation, kryptovaluta, kryptovalutor, aggregerad handelsinformation, nyheter, sverige">
 
         <title>{{ config('app.name', 'Laravel') }}</title>
 
