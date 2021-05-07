@@ -40,7 +40,7 @@
             @endif
             </p>
             @if($collection->image)
-            <img class="rounded-lg shadow w-50 h-50 mt-8" src="{{ asset($collection->image) }}" alt="uploaded file">
+            <img class="rounded-lg shadow w-50 h-50 mt-8" src="{{ asset('storage/' . $collection->image) }}" alt="uploaded file">
             <!-- testar lite -->
             @endif
             <div class="mt-4 flex items-center">

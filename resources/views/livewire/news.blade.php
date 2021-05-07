@@ -1,7 +1,7 @@
 <div>
     <div class="">
         <div class="">
-            <img class="w-5 h-5 inline" src="{{ asset("images/" . $collection->site . "-favicon.png") }}" alt="">
+            <img class="w-5 h-5 inline" src="{{ asset("storage/images/" . $collection->site . "-favicon.png") }}" alt="">
             <a class="text-lg underline" href="{{ $collection->url }}">{{ $collection->topic }}</a> <span>({{ $collection->site }})</span>
         </div>
         <div>
