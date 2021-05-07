@@ -26,6 +26,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'nickname',
         'password',
     ];
 
@@ -58,4 +59,29 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+        // return $this->morphMany(Like::class, 'likeable');
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+        // return $this->morphMany(Like::class, 'likeable');
+    }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+
+    public function avatarUrl()
+    {
+        return $this->profile_photo_url;
+        // return $this->avatar
+        //     ? Storage::disk('avatars')->url($this->avatar)
+        //     : 'https://www.gravatar.com/avatar/' . md5(strtolower(trim($this->email)));
+    }
 }

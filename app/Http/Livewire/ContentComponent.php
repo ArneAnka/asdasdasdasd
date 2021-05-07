@@ -2,7 +2,11 @@
 
 namespace App\Http\Livewire;
 
+use Auth;
+use App\Models\Like;
+use App\Models\Post;
 use App\Models\News;
+use App\Models\Urls;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -10,45 +14,41 @@ class ContentComponent extends Component
 {
     use WithPagination;
 
-    public $title = "";
-    public $url = "";
-    public $sticky = "";
     public $search = "";
-    public $showCreateModal = false;
+    public $liked = [];
 
-    protected $rules = [
-        'title' => 'required|min:5|max:140',
-        'url' => 'url',
-        'sticky' => '',
+    public $listeners = [
+        'newPostWasMade' => 'render',
+        'newUrlWasMade' => 'render',
+        'postWasDeleted' => 'render',
+        'urlsWasDeleted' => 'render',
     ];
-
-    public function test(){
-        $this->showCreateModal = true;
-    }
 
     public function clear(){
         $this->reset('search');
     }
 
-    public function save(){
-        $this->validate();
-        $news = new News();
-        $news->topic = $this->title;
-        $news->url = $this->url;
-        $news->site = $this->url ? parse_url($this->url)['host'] : 'self.co';
-        $news->sticky = $this->sticky ? true : false;
-        $news->save();
-
-        $this->title = '';
-        $this->url = '';
-
-        $this->showCreateModal = false;
-    }
-
     public function render()
     {
+        $collection = collect();
+
+        $posts = Post::search('topic', $this->search)->with(['user'])->latest()->get();
+        $urls = Urls::search('topic', $this->search)->with(['user'])->latest()->get();
+        $news = News::search('topic', $this->search)->latest()->get();
+
+        /** Push posts to the collection */
+        foreach ($posts as $post) $collection->push($post);
+        /** Push urls to the collection */
+        foreach ($urls as $item) $collection->push($item);
+        /** Push news to the collection */
+        foreach ($news as $item) $collection->push($item);
+
+        $collection->each(function($item, $key){
+            $item->user_has_liked = $item->likers->contains(auth()->user()) ? true : false;
+        });
+
         return view('livewire.content-component', [
-            'newsLinks' => News::search('topic', $this->search)->latest()->paginate(50)
+            'urls_news_and_posts' => $collection->sortByDesc('created_at')->sortByDesc('sticky')->paginate(10)
         ]);
     }
 }

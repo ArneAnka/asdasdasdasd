@@ -35,7 +35,7 @@
         {{ round($bitcoin['market_data']['price_change_percentage_7d_in_currency']['usd'], 2) }}%
       </td>
       <td class="hidden sm:table-cell">
-        <img src="{{ asset('images/bitcoin_sparkline.svg') }}" alt="">
+        <img src="{{ asset('storage/images/bitcoin_sparkline.svg') }}" alt="">
       </td>
     @else
         <livewire:shitcoins-loading/>
@@ -65,7 +65,7 @@
         {{ round($ethereum['market_data']['price_change_percentage_7d_in_currency']['usd'], 2) }}%
       </td>
       <td class="hidden sm:table-cell">
-        <img src="{{ asset('images/ethereum_sparkline.svg') }}" alt="">
+        <img src="{{ asset('storage/images/ethereum_sparkline.svg') }}" alt="">
       </td>
     @else
     <livewire:shitcoins-loading/>
@@ -96,7 +96,7 @@
         {{ round($dogecoin['market_data']['price_change_percentage_7d_in_currency']['usd'], 2) }}%
       </td>
       <td class="hidden sm:table-cell">
-        <img src="{{ asset('images/dogecoin_sparkline.svg') }}" alt="">
+        <img src="{{ asset('storage/images/dogecoin_sparkline.svg') }}" alt="">
       </td>
     @else
     <livewire:shitcoins-loading/>
@@ -127,7 +127,7 @@
       {{ round($cardano['market_data']['price_change_percentage_7d_in_currency']['usd'], 2) }}%
     </td>
     <td class="hidden sm:table-cell">
-      <img src="{{ asset('images/cardano_sparkline.svg') }}" alt="">
+      <img src="{{ asset('storage/images/cardano_sparkline.svg') }}" alt="">
     </td>
   @else
   <livewire:shitcoins-loading/>
@@ -158,7 +158,7 @@
         {{ round($litecoin['market_data']['price_change_percentage_7d_in_currency']['usd'], 2) }}%
       </td>
       <td class="hidden sm:table-cell">
-        <img src="{{ asset('images/litecoin_sparkline.svg') }}" alt="">
+        <img src="{{ asset('storage/images/litecoin_sparkline.svg') }}" alt="">
       </td>
       @else
       <livewire:shitcoins-loading/>
@@ -189,7 +189,7 @@
         {{ round($hexcoin['market_data']['price_change_percentage_7d_in_currency']['usd'], 2) }}%
       </td>
       <td class="hidden sm:table-cell">
-        <img src="{{ asset('images/hexcoin_sparkline.svg') }}" alt="">
+        <img src="{{ asset('storage/images/hexcoin_sparkline.svg') }}" alt="">
       </td>
       @else
       <livewire:shitcoins-loading/>
@@ -197,4 +197,3 @@
     </tr>
   </tbody>
 </table>
-
