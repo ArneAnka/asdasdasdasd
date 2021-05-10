@@ -77,6 +77,11 @@ class User extends Authenticatable
         return $this->hasMany(Post::class);
     }
 
+    public function urls()
+    {
+        return $this->hasMany(Urls::class);
+    }
+
     public function avatarUrl()
     {
         return $this->profile_photo_url;

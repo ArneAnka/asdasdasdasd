@@ -22,7 +22,4 @@
     <livewire:content-component />
   </div>
 
-  <!-- footer -->
-  <livewire:footer />
-
 </x-guest-layout>

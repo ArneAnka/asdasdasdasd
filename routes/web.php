@@ -1,9 +1,12 @@
 <?php
 use Illuminate\Support\Facades\Route;
-use GrahamCampbell\Markdown\Facades\Markdown;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UrlsController;
+
+Route::get('/test', function(){
+    return view('test');
+})->name('test');
 
 Route::get('info', function() {
     return view('info');
@@ -24,5 +27,15 @@ Route::get('/about', function(){
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     $posts = auth()->user()->posts;
     $posts = $posts->sortByDesc('created_at');
-    return view('dashboard', compact('posts'));
+    $urls = auth()->user()->urls;
+    $urls = $urls->sortByDesc('created_at');
+
+    // $collection = collect();
+
+    // /** Push posts to the collection */
+    // foreach ($posts as $post) $collection->push($post);
+    // /** Push urls to the collection */
+    // foreach ($urls as $item) $collection->push($item);
+
+    return view('dashboard', ['posts' => $posts, 'urls' => $urls]);
 })->name('dashboard');

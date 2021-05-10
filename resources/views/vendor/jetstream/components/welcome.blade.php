@@ -34,13 +34,31 @@
                 @forelse($posts as $post)
                 <div class="pt-5 pb-5">
                     <span class="font-bold">
-                        {{ $post->topic }}
+                        <a href="{{ route('post.show', $post) }}" class="underline text-indigo-500">{{ $post->topic }}</a>
                     </span>
                     <span class="float-right">{{ $post->created_at }}</span>
                     <span>@markdown($post->body)</span>
                     @if($post->image)
-                        <img class="rounded w-50 h-50" src="{{ asset($post->image) }}" alt="uploaded file">
+                    <img class="rounded w-50 h-50" src="{{ asset($post->image) }}" alt="uploaded file">
                     @endif
+                </div>
+                @empty
+                Du verkar inte ha gjort några inlägg.
+                @endforelse
+            </div>
+
+        </div>
+
+        <!-- urls -->
+        <div class="ml-12">
+            <h2 class="text-2xl">Dina länkar ({{ $urls->count() }})</h2>
+            <div class="mt-2 text-sm text-gray-500 divide-y divide-solid">
+                @forelse($urls as $url)
+                <div class="pt-5 pb-5">
+                    <span class="font-bold">
+                        <a href="{{ route('url.show', $url) }}" class="underline text-indigo-500">{{ $url->topic }}</a>
+                    </span>
+                    <span class="float-right">{{ $url->created_at }}</span>
                 </div>
                 @empty
                 Du verkar inte ha gjort några inlägg.

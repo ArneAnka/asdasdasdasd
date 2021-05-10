@@ -36,7 +36,7 @@
         @empty
           Inga sökresultat i vare <b>Nyheter</b>, <b>Länkar</b> eller <b>Inlägg</b>.
         @endforelse
-        {{ $urls_news_and_posts->links() }}
+        <div class="mt-5">{{ $urls_news_and_posts->links() }}</div>
 
       </div> <!-- /nyehterna -->
     </div> <!-- /själva runda -->
