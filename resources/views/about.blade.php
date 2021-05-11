@@ -1,27 +1,4 @@
 <x-guest-layout title="Nytt utseende">
-  <div class="container mx-auto my-4">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="md:text-center">
-        <span class="text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-          <a href="{{ route('welcome') }}">aktier.co</a>
-        </span>
-        <span class="hidden md:inline-block md:border-l md:pl-5 ml-5">Aggregerad handelsinformation</span>
-        <span class="float-right">
-          @if (Route::has('login'))
-          @auth
-          <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 underline">Dashboard</a>
-          @else
-          <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Login</a>
-          @if (Route::has('register'))
-          <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
-          @endif
-          @endauth
-          @endif
-        </span>
-      </div>
-    </div>
-  </div>
-
   <div class="container mx-auto border-t">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 lg:text-center">
       <p class="mt-10 mb-5 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">Nytt utseende och funktionalitet på aktier.co</p>

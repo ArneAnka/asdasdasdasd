@@ -21,7 +21,7 @@ class AddImageStyleClassesRenderer
         while ($event = $walker->next()) {
             $node = $event->getNode();
             if ($node instanceof Image) {
-                $node->data['attributes'] = array('class' => 'rounded-lg shadow border border-gray-200');
+                $node->data['attributes'] = array('class' => 'rounded-lg w-80 shadow border border-gray-200');
             }
         }
     }

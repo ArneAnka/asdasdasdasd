@@ -22,6 +22,8 @@
 </head>
 
 <body class="bg-gray-100">
+    <livewire:news-banner />
+    @include('layouts.partials._header')
     <div class="font-sans text-gray-900 antialiased">
         {{ $slot }}
         @livewireScripts

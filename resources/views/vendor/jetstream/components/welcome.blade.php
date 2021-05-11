@@ -39,7 +39,7 @@
                     <span class="float-right">{{ $post->created_at }}</span>
                     <span>@markdown($post->body)</span>
                     @if($post->image)
-                    <img class="rounded w-50 h-50" src="{{ asset($post->image) }}" alt="uploaded file">
+                    <img class="rounded w-50 h-50" src="{{ asset('storage/' . $post->image) }}" alt="uploaded file">
                     @endif
                 </div>
                 @empty

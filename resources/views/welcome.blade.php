@@ -1,9 +1,5 @@
 <x-guest-layout>
 
-  <livewire:news-banner />
-
-  @include('layouts.partials._header')
-
   <div class="container mx-auto">
 
     <div class="bg-white p-4 rounded shadow">
