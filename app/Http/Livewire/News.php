@@ -3,9 +3,12 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class News extends Component
 {
+    use AuthorizesRequests;
+
     public $collection;
 
     public function storeLike()
@@ -24,6 +27,26 @@ class News extends Component
         $like->user()->associate(auth()->user());
 
         $like->save();
+    }
+
+    public function deleteNews()
+    {
+        $this->authorize('delete', $this->collection);
+        $this->collection->delete();
+
+        $this->emitUp('newsWasDeleted');
+    }
+
+    public function stickyNews()
+    {
+        $this->authorize('update', $this->collection);
+        if($this->collection->sticky){
+            $this->collection->update(['sticky' => false]);
+        }elseif(!$this->collection->sticky){
+            $this->collection->update(['sticky' => true]);
+        }
+
+        $this->emitUp('newsWasDeleted');
     }
 
     public function render()

@@ -6,7 +6,7 @@
                 <div>
                     @if($post->image)
                     <a href="{{ asset('storage/' . $post->image) }}">
-                        <img class="rounded h-80 mb-3" src="{{ asset('storage/' . $post->image) }}" alt="uploaded file">
+                        <img class="rounded h-80 inline-block mb-3" src="{{ asset('storage/' . $post->image) }}" alt="uploaded file">
                     </a>
                     @endif
                 </div>

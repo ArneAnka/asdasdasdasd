@@ -8,8 +8,9 @@ use App\Models\Urls;
 use App\Policies\UrlsPolicy;
 use App\Models\Comment;
 use App\Policies\CommentPolicy;
+use App\Models\News;
+use App\Policies\NewsPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Gate;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -23,6 +24,7 @@ class AuthServiceProvider extends ServiceProvider
         Post::class => PostPolicy::class,
         Urls::class => UrlsPolicy::class,
         Comment::class => CommentPolicy::class,
+        News::class => NewsPolicy::class,
     ];
 
     /**

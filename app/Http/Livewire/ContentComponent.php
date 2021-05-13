@@ -22,6 +22,7 @@ class ContentComponent extends Component
         'newUrlWasMade' => 'render',
         'postWasDeleted' => 'render',
         'urlsWasDeleted' => 'render',
+        'newsWasDeleted' => 'render'
     ];
 
     public function clear(){

@@ -2,6 +2,11 @@
     <div class="">
         <div class="">
             <img class="w-5 h-5 inline" src="{{ asset("storage/images/" . $collection->site . "-favicon.png") }}" alt="">
+            @if($this->collection->sticky)
+            <span class="bg-yellow-300 text-black p-2 rounded  leading-none inline-block">
+                Klistrad
+            </span>
+            @endif
             <a class="text-lg underline" href="{{ $collection->url }}">{{ $collection->topic }}</a> <span>({{ $collection->site }})</span>
         </div>
         <div>
@@ -25,5 +30,25 @@
             </a>
             <span>{{ $collection->comments()->count() }}</span>
         </div>
+        @can('delete', $collection)
+        <div class="flex mr-2 text-gray-700 text-sm mr-8">
+            <span>
+                <a class="underline" href="#/" x-on:click="confirmNewsDeletion" x-data="{
+                            confirmNewsDeletion () {
+                                if(window.confirm('Säker?')){
+                                    @this.call('deleteNews')
+                            }
+                        }
+                    }">Radera nyhet</a>
+            </span>
+        </div>
+        @endcan
+        @can('update', $collection)
+        <div class="flex mr-2 text-gray-700 text-sm mr-8">
+            <span>
+                <a class="underline" href="#/" wire:click.prevent="stickyNews">Klistra nyhet</a>
+            </span>
+        </div>
+        @endcan
     </div>
 </div>

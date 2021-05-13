@@ -14,7 +14,7 @@ class CreateUrl extends Component
 
     protected $rules = [
         'title' => 'required|min:5|max:140',
-        'url' => 'url|unique:urls,url',
+        'url' => 'required|url|unique:urls,url',
         'sticky' => '',
     ];
 

@@ -17,10 +17,6 @@
                     <x-input.text wire:model=" url" id="url" placeholder="http://www.example.com" />
                 </x-input.group>
 
-                <x-input.group for="sticky" label="Klistra längst upp" :error="$errors->first('sticky')">
-                    <x-input.checkbox wire:model="sticky" id="sticky" />
-                </x-input.group>
-
             </x-slot>
 
             <x-slot name="footer">

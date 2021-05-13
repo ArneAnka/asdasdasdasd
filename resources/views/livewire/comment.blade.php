@@ -19,7 +19,7 @@
                     </div>
                     <div class="mt-3 flex items-center justify-between">
                         <button type="submit" class="inline-flex items-center justify-center px-4 py-2 border border-transparent font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                            Comment
+                            Ändra
                         </button>
                     </div>
                 </form>

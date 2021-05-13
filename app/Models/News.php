@@ -10,6 +10,8 @@ class News extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $fillable = ['sticky'];
+
     public function comments()
     {
         return $this->morphMany(Comment::class, 'commentable');
