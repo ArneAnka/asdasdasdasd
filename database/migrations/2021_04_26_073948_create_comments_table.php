@@ -18,8 +18,6 @@ class CreateCommentsTable extends Migration
             // $table->uuid('uuid')->primary()->unique();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('parent_id')->nullable()->constrained('comments')->onDelete('cascade');
-            // $table->integer('commentable_id');
-            // $table->integer('commentable_type');
             $table->morphs('commentable');
             // $table->uuidMorphs('commentable');
             $table->text('body');

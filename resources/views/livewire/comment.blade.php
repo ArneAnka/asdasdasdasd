@@ -12,7 +12,7 @@
                 <form wire:submit.prevent="editComment" class="mb-2">
                     <div>
                         <label for="comment" class="sr-only">Comment body</label>
-                        <textarea id="comment" name="comment" rows="3" class="shadow-sm block w-full focus:ring-blue-500 focus:border-blue-500 border-gray-300 @error('editState.body') border-red-500 @enderror rounded-md" placeholder="Write something" wire:model.defer="editState.body"></textarea>
+                        <x-input.textarea wire:model.defer="editState.body" id="editState.body" placeholder="Skriv ditt inlägg" />
                         @error('editState.body')
                         <span class="mt-2 text-sm text-red-500">{{ $message }}</span>
                         @enderror

@@ -37,6 +37,19 @@ class Url extends Component
         $this->emitUp('urlsWasDeleted');
     }
 
+    public function stickyUrl()
+    {
+        $this->authorize('update', $this->collection);
+
+        if ($this->collection->sticky) {
+            $this->collection->update(['sticky' => false]);
+        } elseif (!$this->collection->sticky) {
+            $this->collection->update(['sticky' => true]);
+        }
+
+        $this->emitUp('urlsWasDeleted');
+    }
+
     public function render()
     {
         return view('livewire.url');

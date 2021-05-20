@@ -21,6 +21,7 @@ class CreateUrlsTable extends Migration
             $table->string('url')->unique();
             $table->string('site');
             $table->boolean('sticky')->default(0);
+            $table->boolean('hidden')->default(0);
             $table->ipAddress('ip_adress')->nullable();
             $table->softDeletes();
             $table->timestamps();

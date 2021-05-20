@@ -2,12 +2,16 @@
     <div class="">
         <div class="">
             <img class="w-5 h-5 inline" src="{{ asset("storage/images/" . $collection->site . "-favicon.png") }}" alt="">
-            <a class="text-lg underline" href="{{ $collection->url }}">{{ $collection->topic }}</a> <span>({{ $collection->site }})</span>
+            @if($this->collection->sticky)
+            <span class="bg-yellow-300 text-black p-1 rounded  leading-none inline-block">
+                Klistrad
+            </span>
+            @endif
+                <a class="text-lg underline" href="{{ $collection->url }}">{{ $collection->topic }}</a> <span>({{ $collection->site }})</span>
         </div>
-        <div>
-            Inlagd {{ $collection->created_at }} ({{ $collection->created_at->diffForHumans() }}), av
-
-            <span class="text-gray-900 -mt-1 inline-flex items-center justify-between">
+        <div> <!-- Vem är det som lagt in den -->
+            Inlagd {{ $collection->created_at }} ({{ $collection->created_at->diffForhumans() }}), av
+            <span class="text-gray-900 inline-flex items-center justify-between">
                 {{ $collection->user->name }}
                 @if($collection->user->is_verified)
                 <svg class="text-blue-500 fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000">
@@ -25,7 +29,6 @@
                 &nbsp;<small class="text-gray-400">{{ "@" . $collection->user->nickname }}</small>
                 &nbsp;
             </span>
-
         </div>
     </div>
     <div class="mt-0 flex items-center">
@@ -55,6 +58,13 @@
                             }
                         }
                     }">Radera url</a>
+            </span>
+        </div>
+        @endcan
+        @can('update', $collection)
+        <div class="flex mr-2 text-gray-700 text-sm mr-8">
+            <span>
+                <a class="underline" href="#/" wire:click.prevent="stickyUrl">Klistra nyhet</a>
             </span>
         </div>
         @endcan

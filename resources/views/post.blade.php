@@ -1,5 +1,8 @@
 <x-guest-layout>
     <div class="container mx-auto">
+        <h1 class="text-2xl mb-2">
+            {{$post->topic}}
+        </h1>
         <div class="bg-white p-4 rounded shadow mb-5">
             <div class="border-b">
                 @markdown($post->body)

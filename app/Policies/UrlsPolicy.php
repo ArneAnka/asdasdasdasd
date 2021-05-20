@@ -53,7 +53,7 @@ class UrlsPolicy
      */
     public function update(User $user, Urls $urls)
     {
-        //
+        return (int) $user->id === 1;
     }
 
     /**

@@ -3,13 +3,13 @@
         <div class="">
             <img class="w-5 h-5 inline" src="{{ asset("storage/images/" . $collection->site . "-favicon.png") }}" alt="">
             @if($this->collection->sticky)
-            <span class="bg-yellow-300 text-black p-2 rounded  leading-none inline-block">
+            <span class="bg-yellow-300 text-black p-1 rounded  leading-none inline-block">
                 Klistrad
             </span>
             @endif
             <a class="text-lg underline" href="{{ $collection->url }}">{{ $collection->topic }}</a> <span>({{ $collection->site }})</span>
         </div>
-        <div>
+        <div><!-- Vem är det som lagt in den -->
             Inlagd {{ $collection->created_at }} ({{ $collection->created_at->diffForHumans() }})
         </div>
     </div>

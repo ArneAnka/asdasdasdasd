@@ -34,7 +34,7 @@ class CreatePost extends Component
     public function updatedImage()
     {
         $this->validate([
-            'image' => 'image|mimes:png,jpg,gif|max:3072', // 3MB Max
+            'image' => 'image|mimes:png,jpg,gif,webp|max:3072', // 3MB Max
         ]);
     }
 

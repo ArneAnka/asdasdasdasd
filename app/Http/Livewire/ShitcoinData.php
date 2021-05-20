@@ -8,71 +8,13 @@ use Illuminate\Support\Facades\Cache;
 
 class ShitcoinData extends Component
 {
-    public $bitcoin = [];
-    public $ethereum = [];
-    public $dogecoin = [];
-    public $cardano = [];
-    public $litecoin = [];
-    public $hexcoin = [];
+    public $cryptomarketdata = [];
 
-    public function loadShitCoinDataBitcoin()
+    public function loadShitCoinData()
     {
-        $this->bitcoin = Cache::remember('bitcoin', 300, function(){
-            return Http::get('https://api.coingecko.com/api/v3/coins/bitcoin?tickers=false&community_data=false&developer_data=false&sparkline=true')->json();
+        $this->cryptomarketdata = Cache::remember('cryptomarketdata', 300, function () {
+            return Http::get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin%2Cethereum%2Cdogecoin%2Ccardano%2Clitecoin%2Chex%2Cbanano&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=1h%2C24h%2C7d')->json();
         });
-        if(!isset($this->bitcoin['market_data']['price_change_percentage_1h_in_currency']['usd'])){
-            $this->bitcoin['market_data']['price_change_percentage_1h_in_currency']['usd'] = 0;
-        }
-    }
-
-    public function loadShitCoinDataEthereum()
-    {
-        $this->ethereum = Cache::remember('ethereum', 300, function(){
-            return Http::get('https://api.coingecko.com/api/v3/coins/ethereum?tickers=false&community_data=false&developer_data=false&sparkline=true')->json();
-        });
-        if(!isset($this->ethereum['market_data']['price_change_percentage_1h_in_currency']['usd'])){
-            $this->ethereum['market_data']['price_change_percentage_1h_in_currency']['usd'] = 0;
-        }
-    }
-
-    public function loadShitCoinDataDogecoin()
-    {
-        $this->dogecoin = Cache::remember('dogecoin', 300, function(){
-            return Http::get('https://api.coingecko.com/api/v3/coins/dogecoin?tickers=false&community_data=false&developer_data=false&sparkline=true')->json();
-        });
-        if(!isset($this->dogecoin['market_data']['price_change_percentage_1h_in_currency']['usd'])){
-            $this->dogecoin['market_data']['price_change_percentage_1h_in_currency']['usd'] = 0;
-        }
-    }
-
-    public function loadShitCoinDataCardano()
-    {
-        $this->cardano = Cache::remember('cardano', 300, function(){
-            return Http::get('https://api.coingecko.com/api/v3/coins/cardano?tickers=false&community_data=false&developer_data=false&sparkline=true')->json();
-        });
-        if(!isset($this->cardano['market_data']['price_change_percentage_1h_in_currency']['usd'])){
-            $this->cardano['market_data']['price_change_percentage_1h_in_currency']['usd'] = 0;
-        }
-    }
-
-    public function loadShitCoinDataLitecoin()
-    {
-        $this->litecoin = Cache::remember('litecoin', 300, function(){
-            return Http::get('https://api.coingecko.com/api/v3/coins/litecoin?tickers=false&community_data=false&developer_data=false&sparkline=true')->json();
-        });
-        if(!isset($this->litecoin['market_data']['price_change_percentage_1h_in_currency']['usd'])){
-            $this->litecoin['market_data']['price_change_percentage_1h_in_currency']['usd'] = 0;
-        }
-    }
-
-    public function loadShitCoinDataHexcoin()
-    {
-        $this->hexcoin = Cache::remember('hexcoin', 300, function(){
-            return Http::get('https://api.coingecko.com/api/v3/coins/hex?tickers=false&community_data=false&developer_data=false&sparkline=true')->json();
-        });
-        if(!isset($this->hexcoin['market_data']['price_change_percentage_1h_in_currency']['usd'])){
-            $this->hexcoin['market_data']['price_change_percentage_1h_in_currency']['usd'] = 0;
-        }
     }
 
     public function render()
