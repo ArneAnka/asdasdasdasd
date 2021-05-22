@@ -10,6 +10,6 @@ class CoinData extends Component
 
     public function render()
     {
-        return view('livewire.coin-data');
+        return view('livewire.frontpage.coin-data');
     }
 }

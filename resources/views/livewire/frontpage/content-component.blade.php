@@ -23,7 +23,7 @@
           <x-icon.trash /> rensa</x-button>
       </div>
 
-      <div>
+      <div class="divide-y divide-black divide-opacity-25">
         <!-- nyehterna -->
         @forelse ($urls_news_and_posts as $collection)
           @if(class_basename($collection) == "Post")
@@ -36,9 +36,9 @@
         @empty
           Inga sökresultat i vare <b>Nyheter</b>, <b>Länkar</b> eller <b>Inlägg</b>.
         @endforelse
-        <div class="mt-5">{{ $urls_news_and_posts->links() }}</div>
 
       </div> <!-- /nyehterna -->
+        <div class="mt-5">{{ $urls_news_and_posts->links() }}</div>
     </div> <!-- /själva runda -->
   </div> <!-- /container -->
 

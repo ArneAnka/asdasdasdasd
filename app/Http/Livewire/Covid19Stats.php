@@ -19,6 +19,6 @@ class Covid19Stats extends Component
 
     public function render()
     {
-        return view('livewire.covid19-stats');
+        return view('livewire.frontpage.covid19-stats');
     }
 }

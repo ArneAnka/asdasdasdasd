@@ -8,6 +8,6 @@ class ShitcoinsLoading extends Component
 {
     public function render()
     {
-        return view('livewire.shitcoins-loading');
+        return view('livewire.frontpage.shitcoins-loading');
     }
 }

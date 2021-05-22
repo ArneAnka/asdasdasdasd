@@ -72,8 +72,20 @@ class Post extends Component
         $this->emitUp('postWasDeleted');
     }
 
+    public function stickyPost()
+    {
+        $this->authorize('update', $this->collection);
+        if ($this->collection->sticky) {
+            $this->collection->update(['sticky' => false]);
+        } elseif (!$this->collection->sticky) {
+            $this->collection->update(['sticky' => true]);
+        }
+
+        $this->emitUp('newsWasDeleted');
+    }
+
     public function render()
     {
-        return view('livewire.post');
+        return view('livewire.frontpage.post');
     }
 }

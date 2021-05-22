@@ -1,10 +1,19 @@
 <x-guest-layout>
     <div class="container mx-auto">
-        <h1 class="text-2xl mb-2">
-            {{$post->topic}}
-        </h1>
         <div class="bg-white p-4 rounded shadow mb-5">
-            <div class="border-b">
+            <div class="mb-3">
+                <h1 class="text-2xl mb-2">
+                    {{$post->topic}}
+                </h1>
+                <div class="text-xs">
+                    Författad av {{$post->user->name}} <small>{{"@" . $post->user->nickname}}</small>
+                </div>
+                <div class="text-xs">
+                    Inlagd {{$post->created_at->diffForHumans()}} <small>({{$post->created_at}})</small>
+                </div>
+            </div>
+
+            <div class="mb-2">
                 @markdown($post->body)
                 <div>
                     @if($post->image)
@@ -13,12 +22,6 @@
                     </a>
                     @endif
                 </div>
-            </div>
-            <div>
-                Författad av {{$post->user->name}} <small>{{"@" . $post->user->nickname}}</small>
-            </div>
-            <div>
-                Inlagd {{$post->created_at->diffForHumans()}} <small>({{$post->created_at}})</small>
             </div>
             <div>
                 <!-- start how many likers -->

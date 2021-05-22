@@ -89,4 +89,12 @@ class User extends Authenticatable
         //     ? Storage::disk('avatars')->url($this->avatar)
         //     : 'https://www.gravatar.com/avatar/' . md5(strtolower(trim($this->email)));
     }
+
+    /**
+     *
+     */
+    public function ip()
+    {
+        return $this->hasMany(Ip::class);
+    }
 }

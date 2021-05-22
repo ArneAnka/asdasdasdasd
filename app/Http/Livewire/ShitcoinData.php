@@ -19,6 +19,6 @@ class ShitcoinData extends Component
 
     public function render()
     {
-        return view('livewire.shitcoin-data');
+        return view('livewire.frontpage.shitcoin-data');
     }
 }

@@ -18,6 +18,6 @@ class MarketData extends Component
 
     public function render()
     {
-        return view('livewire.market-data');
+        return view('livewire.frontpage.market-data');
     }
 }

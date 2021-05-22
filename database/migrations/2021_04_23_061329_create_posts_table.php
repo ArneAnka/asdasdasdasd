@@ -21,7 +21,8 @@ class CreatePostsTable extends Migration
             $table->text('body');
             $table->string('image')->nullable();
             $table->boolean('sticky')->default(0);
-            $table->ipAddress('ip_adress')->nullable();
+            $table->boolean('nsfw')->default(0);
+            $table->ipAddress('ip_address')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

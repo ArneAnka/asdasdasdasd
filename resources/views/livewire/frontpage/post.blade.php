@@ -1,30 +1,14 @@
-<div class="flex mx-0 md:mx-auto my-0">
+<div>
     <!--horizantil margin is just for display-->
-    <div class="flex items-start px-0 py-4">
-        <img class="hidden md:block w-12 h-12 rounded-full object-cover mr-4 shadow" src="{{ $collection->user->profile_photo_url }}" alt="avatar">
+    <div class="bg-gray-50">
         <div class="">
-
             <div>
-                <a href="{{route('post.show', $collection)}}">{{$collection->topic}}</a>
-            </div>
-            <div>
-                <p class="mt-3 text-gray-700 text-sm">
-                    @if($isEditing)
-                <form wire:submit.prevent="editPost" class="">
-                    <x-slot name="title">Ändra post</x-slot>
-                    <x-input.textarea :error="$errors->first('editState.body')" wire:model.lazy="editState.body" id="body" placeholder="" />
-                    @error('editState.body') <span class="text-red-500">{{ $message }}</span> @enderror
-                    <x-button.primary type="submit" class="mt-3">
-                        Ändra
-                    </x-button.primary>
-                </form>
-                @else
-                @markdown($collection->body)
+                @if($this->collection->sticky)
+                <span class="bg-yellow-300 text-black p-1 rounded  leading-none inline-block">
+                    Klistrad
+                </span>
                 @endif
-                </p>
-                @if($collection->image)
-                <img class="rounded-lg shadow h-80 mt-8" src="{{ asset('storage/' . $collection->image) }}" alt="uploaded file">
-                @endif
+                <a class="text-lg underline" href="{{route('post.show', $collection)}}">{{$collection->topic}}</a>
             </div>
             <div>
                 <!-- Vem är det som lagt in den -->
@@ -81,7 +65,9 @@
                 @endcan
                 @can('update', $collection)
                 <div class="flex mr-2 text-gray-700 text-sm mr-8">
-                    <span><a wire:click.prevent="$toggle('isEditing')" class="underline" href="#">Ändra post</a></span>
+                    <span>
+                        <a class="underline" href="#/" wire:click.prevent="stickyPost">Klistra post</a>
+                    </span>
                 </div>
                 @endcan
             </div>

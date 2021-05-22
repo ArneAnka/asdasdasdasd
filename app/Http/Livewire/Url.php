@@ -52,6 +52,6 @@ class Url extends Component
 
     public function render()
     {
-        return view('livewire.url');
+        return view('livewire.frontpage.url');
     }
 }

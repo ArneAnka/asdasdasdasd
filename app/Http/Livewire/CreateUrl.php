@@ -53,6 +53,6 @@ class CreateUrl extends Component
 
     public function render()
     {
-        return view('livewire.create-url');
+        return view('livewire.frontpage.create-url');
     }
 }

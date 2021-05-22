@@ -21,7 +21,7 @@ class CreateCommentsTable extends Migration
             $table->morphs('commentable');
             // $table->uuidMorphs('commentable');
             $table->text('body');
-            $table->ipAddress('ip_adress')->nullable();
+            $table->ipAddress('ip_address')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

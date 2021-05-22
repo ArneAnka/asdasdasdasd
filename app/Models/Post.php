@@ -5,12 +5,21 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Request;
 
 class Post extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['body'];
+    protected static function boot()
+    {
+        parent::boot();
+        static::creating(function ($model) {
+            $model->ip_address = Request::getClientIp();
+        });
+    }
+
+    protected $fillable = ['body', 'sticky'];
 
     public function user()
     {

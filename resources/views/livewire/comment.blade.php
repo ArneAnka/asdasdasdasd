@@ -57,19 +57,18 @@
     </div>
 
     <div class="ml-14 mt-6">
-
         @if($isReplying)
         <form wire:submit.prevent="postReply" class="mb-2">
             <div>
                 <label for="comment" class="sr-only">Comment body</label>
-                <textarea id="comment" name="comment" rows="3" class="shadow-sm block w-full focus:ring-blue-500 focus:border-blue-500 border-gray-300 @error('replyState.body') border-red-500 @enderror rounded-md" placeholder="Write something" wire:model.defer="replyState.body"></textarea>
+                <x-input.textarea wire:model.defer="replyState.body" id="replyState.body" placeholder="Skriv ditt inlägg" />
                 @error('replyState.body')
                 <span class="mt-2 text-sm text-red-500">{{ $message }}</span>
                 @enderror
             </div>
             <div class="mt-3 flex items-center justify-between">
                 <button type="submit" class="inline-flex items-center justify-center px-4 py-2 border border-transparent font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                    Comment
+                    Svara
                 </button>
             </div>
         </form>

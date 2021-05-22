@@ -25,31 +25,29 @@ class ContentComponent extends Component
         'newsWasDeleted' => 'render'
     ];
 
-    public function clear(){
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
+
+    public function clear()
+    {
         $this->reset('search');
+        $this->resetPage();
     }
 
     public function render()
     {
-        $collection = collect();
+        $data = News::search('topic', $this->search)->orderBy('sticky', 'DESC')->latest()->paginate(50);
 
-        $posts = Post::search('topic', $this->search)->with(['user'])->latest()->get();
-        $urls = Urls::search('topic', $this->search)->with(['user'])->latest()->get();
-        $news = News::search('topic', $this->search)->latest()->get();
-
-        /** Push posts to the collection */
-        foreach ($posts as $post) $collection->push($post);
-        /** Push urls to the collection */
-        foreach ($urls as $item) $collection->push($item);
-        /** Push news to the collection */
-        foreach ($news as $item) $collection->push($item);
-
-        $collection->each(function($item, $key){
+        $data->each(function($item, $key){
             $item->user_has_liked = $item->likers->contains(auth()->user()) ? true : false;
         });
 
-        return view('livewire.content-component', [
-            'urls_news_and_posts' => $collection->sortByDesc('created_at')->sortByDesc('sticky')->paginate(10)
+        return view('livewire.frontpage.content-component', [
+            // 'urls_news_and_posts' => News::search('topic', $this->search)->orderBy('sticky', 'DESC')->orderBy('created_at', 'DESC')->paginate(50)
+            'urls_news_and_posts' => $data
+            // 'urls_news_and_posts' => $collection->sortByDesc('created_at')->sortByDesc('sticky')->paginate(50)
         ]);
     }
 }

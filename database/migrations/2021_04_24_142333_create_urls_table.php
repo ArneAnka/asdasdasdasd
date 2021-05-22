@@ -22,7 +22,7 @@ class CreateUrlsTable extends Migration
             $table->string('site');
             $table->boolean('sticky')->default(0);
             $table->boolean('hidden')->default(0);
-            $table->ipAddress('ip_adress')->nullable();
+            $table->ipAddress('ip_address')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
