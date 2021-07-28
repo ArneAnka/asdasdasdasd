@@ -12,6 +12,17 @@ class News extends Model
 
     protected $fillable = ['sticky'];
 
+    public function getIncrementing()
+    {
+        return false;
+    }
+
+    public function getKeyType()
+    {
+
+        return 'string';
+    }
+
     public function comments()
     {
         return $this->morphMany(Comment::class, 'commentable');
@@ -20,6 +31,11 @@ class News extends Model
     public function likes()
     {
         return $this->morphMany(Like::class, 'likeable');
+    }
+
+    public function similar()
+    {
+        return $this->belongsToMany(self::class, 'similars', 'parent_id', 'reference_id');
     }
 
     public function likers()

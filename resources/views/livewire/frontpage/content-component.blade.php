@@ -28,7 +28,7 @@
         @forelse ($urls_news_and_posts as $collection)
           @if(class_basename($collection) == "Post")
             <livewire:post :collection="$collection" :key="$collection->id" />
-          @elseif(class_basename($collection) == "Urls")
+          @elseif(class_basename($collection) == "Url")
             <livewire:url :collection="$collection" :key="$collection->id" />
           @elseif(class_basename($collection) == "News")
             <livewire:news :collection="$collection" :key="$collection->id" />

@@ -1,6 +1,6 @@
 <div>
     <!--horizantil margin is just for display-->
-    <div class="bg-gray-50">
+    <div class="bg-gradient-to-r from-yellow-50">
         <div class="">
             <div>
                 @if($this->collection->sticky)

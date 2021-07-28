@@ -1,4 +1,4 @@
-<div>
+<div class="bg-gradient-to-r from-indigo-50">
     <div class="">
         <div class="">
             <img class="w-5 h-5 inline" src="{{ asset("storage/images/" . $collection->site . "-favicon.png") }}" alt="">
@@ -7,9 +7,10 @@
                 Klistrad
             </span>
             @endif
-                <a class="text-lg underline" href="{{ $collection->url }}">{{ $collection->topic }}</a> <span>({{ $collection->site }})</span>
+            <a class="text-lg underline" href="{{ $collection->url }}">{{ $collection->topic }}</a> <span>({{ $collection->site }})</span>
         </div>
-        <div> <!-- Vem är det som lagt in den -->
+        <div>
+            <!-- Vem är det som lagt in den -->
             Inlagd {{ $collection->created_at }} ({{ $collection->created_at->diffForhumans() }}), av
             <span class="text-gray-900 inline-flex items-center justify-between">
                 {{ $collection->user->name }}

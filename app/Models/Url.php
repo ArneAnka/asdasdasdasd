@@ -6,8 +6,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Str;
 
-class Urls extends Model
+class Url extends Model
 {
     use HasFactory, SoftDeletes;
 
@@ -18,7 +19,19 @@ class Urls extends Model
         parent::boot();
         static::creating(function ($model) {
             $model->ip_address = Request::getClientIp();
+            $model->{$model->getKeyName()} = (string) Str::uuid();
         });
+    }
+
+    public function getIncrementing()
+    {
+        return false;
+    }
+
+    public function getKeyType()
+    {
+
+        return 'string';
     }
 
     public function comments()

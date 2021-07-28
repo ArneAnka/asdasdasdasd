@@ -2,11 +2,9 @@
 
 namespace App\Http\Livewire;
 
-use Auth;
-use App\Models\Like;
 use App\Models\Post;
 use App\Models\News;
-use App\Models\Urls;
+use App\Models\Url;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -38,7 +36,13 @@ class ContentComponent extends Component
 
     public function render()
     {
-        $data = News::search('topic', $this->search)->orderBy('sticky', 'DESC')->latest()->paginate(50);
+        $news = News::search('topic', $this->search)->latest()->get();
+        $posts = Post::search('topic', $this->search)->latest()->get();
+        $urls = Url::search('topic', $this->search)->latest()->get();
+
+        $data = $news->merge($urls)->merge($posts);
+
+        $data = $data->sortByDesc('created_at')->sortByDesc('sticky')->paginate(50);
 
         $data->each(function($item, $key){
             $item->user_has_liked = $item->likers->contains(auth()->user()) ? true : false;

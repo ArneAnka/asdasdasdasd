@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
+use App\Notifications\NewUserRegistred;
 
 class User extends Authenticatable
 {
@@ -29,6 +30,16 @@ class User extends Authenticatable
         'nickname',
         'password',
     ];
+
+    protected static function boot(){
+        parent::boot();
+
+        static::created(function($model){
+            // Notify admin of new user registration
+            $user = User::find(1);
+            $user->notify(new NewUserRegistred($model));
+        });
+    }
 
     /**
      * The attributes that should be hidden for arrays.
@@ -63,7 +74,6 @@ class User extends Authenticatable
     public function likes()
     {
         return $this->hasMany(Like::class);
-        // return $this->morphMany(Like::class, 'likeable');
     }
 
     public function comments()
@@ -79,7 +89,7 @@ class User extends Authenticatable
 
     public function urls()
     {
-        return $this->hasMany(Urls::class);
+        return $this->hasMany(Url::class);
     }
 
     public function avatarUrl()

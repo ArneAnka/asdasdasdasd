@@ -3,7 +3,7 @@
         <div class="bg-white p-4 rounded shadow mb-5">
             <div class="mb-3">
                 <h1 class="text-2xl mb-2">
-                    {{$post->topic}}
+                    {{ $post->topic }}
                 </h1>
                 <div class="text-xs">
                     Författad av {{$post->user->name}} <small>{{"@" . $post->user->nickname}}</small>

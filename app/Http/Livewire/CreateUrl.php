@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Urls;
+use App\Models\Url;
 use Livewire\Component;
 
 class CreateUrl extends Component
@@ -33,13 +33,13 @@ class CreateUrl extends Component
         $validatedData = $this->validate();
         // Urls::create($validatedData);
 
-        $urls = new Urls();
-        $urls->topic = $this->title;
-        $urls->user_id = auth()->user()->id;
-        $urls->url = $this->url;
-        $urls->site = $this->url ? parse_url($this->url)['host'] : 'self.co';
-        $urls->sticky = $this->sticky ? true : false;
-        $urls->save();
+        $url = new Url();
+        $url->topic = $this->title;
+        $url->user_id = auth()->user()->id;
+        $url->url = $this->url;
+        $url->site = $this->url ? parse_url($this->url)['host'] : 'self.co';
+        $url->sticky = $this->sticky ? true : false;
+        $url->save();
 
         $this->title = '';
         $this->url = '';

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Str;
 
 class Comment extends Model
 {
@@ -18,25 +19,22 @@ class Comment extends Model
         parent::boot();
         static::creating(function ($model) {
             $model->ip_address = Request::getClientIp();
+            $model->{$model->getKeyName()} = (string) Str::uuid();
         });
     }
 
-    /**
-     * Undocumented function
-     * Skall vi skicka notifieringar här?
-     * @return void
-     */
-    // protected static function boot()
-    // {
-    //     parent::boot();
-    //     static::creating(function ($model) {
-    //         if (empty($model->{$model->getKeyName()})) {
-    //             $model->{$model->getKeyName()} = Str::uuid()->toString();
-    //         }
-    //     });
-    // }
-
     protected $fillable = ['body'];
+
+    public function getIncrementing()
+    {
+        return false;
+    }
+
+    public function getKeyType()
+    {
+
+        return 'string';
+    }
 
     /**
      * Get the parent commentable model (user or post).

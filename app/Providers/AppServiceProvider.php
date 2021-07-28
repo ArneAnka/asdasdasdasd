@@ -16,10 +16,20 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        //
+    }
+
+    /**
+     * Bootstrap any application services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+
         /**
          * Paginate a standard Laravel Collection.
          *
-         * https://www.onlinecode.org/merge-multiple-collection-paginate-in-laravel-example/
          * @param int $perPage
          * @param int $total
          * @param int $page
@@ -28,6 +38,7 @@ class AppServiceProvider extends ServiceProvider
          */
         Collection::macro('paginate', function ($perPage, $total = null, $page = null, $pageName = 'page') {
             $page = $page ?: LengthAwarePaginator::resolveCurrentPage($pageName);
+
             return new LengthAwarePaginator(
                 $this->forPage($page, $perPage),
                 $total ?: $this->count(),
@@ -39,15 +50,7 @@ class AppServiceProvider extends ServiceProvider
                 ]
             );
         });
-    }
 
-    /**
-     * Bootstrap any application services.
-     *
-     * @return void
-     */
-    public function boot()
-    {
         Builder::macro('search', function ($field, $string) {
             return $string ? $this->where($field, 'like', '%'.$string.'%') : $this;
         });

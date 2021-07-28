@@ -4,6 +4,8 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\UserCommentedToComment;
 
 class Comment extends Component
 {
@@ -48,14 +50,26 @@ class Comment extends Component
         $this->isEditing = false;
     }
 
+    /**
+     * Save comment as a reply to another comment
+     *
+     * @return void
+     */
     public function postReply()
     {
         if(!$this->comment->isParent()){
             return;
         }
+
         $this->validate([
             'replyState.body' => 'required'
         ]);
+
+        // Send a notification to the comment owner, but not if it is me whos made the comment
+        // Todo: move to model?
+        if($this->comment->user != auth()->user()){
+            Notification::send($this->comment->user, new UserCommentedToComment($this->comment));
+        }
 
         $reply = $this->comment->children()->make($this->replyState);
         $reply->user()->associate(auth()->user());

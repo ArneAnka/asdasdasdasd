@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Str;
 
 class Post extends Model
 {
@@ -16,10 +17,22 @@ class Post extends Model
         parent::boot();
         static::creating(function ($model) {
             $model->ip_address = Request::getClientIp();
+            $model->{$model->getKeyName()} = (string) Str::uuid();
         });
     }
 
     protected $fillable = ['body', 'sticky'];
+
+    public function getIncrementing()
+    {
+        return false;
+    }
+
+    public function getKeyType()
+    {
+
+        return 'string';
+    }
 
     public function user()
     {

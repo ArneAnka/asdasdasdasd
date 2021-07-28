@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Urls;
+use App\Models\Url;
 use Illuminate\Http\Request;
 
-class UrlsController extends Controller
+class UrlController extends Controller
 {
-    public function __invoke(Urls $urls)
+    public function __invoke(Url $urls)
     {
         return view('urls', ['urls' => $urls]);
     }

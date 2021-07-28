@@ -15,11 +15,17 @@
 
         <div class="ml-12">
             <div class="mt-2 text-sm text-gray-500">
+                @forelse (Auth::user()->notifications as $notification)
+                @include('auth.partials.notifications._' . class_basename($notification->type))
+                {{ $notification->markAsRead() }}
+                @empty
                 Du verkar inte ha några notifieringar.
+                @endforelse
             </div>
-
         </div>
     </div>
+
+
 
     <div class="p-6 border-t border-gray-200 md:border-t-0 md:border-l">
         <div class="flex items-center">
@@ -31,7 +37,7 @@
 
         <div class="ml-12">
             <div class="mt-2 text-sm text-gray-500 divide-y divide-solid">
-                @forelse($posts as $post)
+                @forelse($posts->sortByDesc('created_at') as $post)
                 <div class="pt-5 pb-5">
                     <span class="font-bold">
                         <a href="{{ route('post.show', $post) }}" class="underline text-indigo-500">{{ $post->topic }}</a>
@@ -46,25 +52,55 @@
                 Du verkar inte ha gjort några inlägg.
                 @endforelse
             </div>
+        </div>
+    </div>
 
+    <div class="p-6 border-t border-gray-200">
+        <div class="flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#000000" class="w-8 h-8 text-gray-400">
+                <path d="M0 0h24v24H0V0z" fill="none" />
+                <path d="M16.5 3c-1.74 0-3.41.81-4.5 2.09C10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 5.42 19.58 3 16.5 3zm-4.4 15.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z" />
+            </svg>
+            <div class="ml-4 text-lg text-gray-600 leading-7 font-semibold">Gillade ({{ auth()->user()->likes->count() }})</div>
+        </div>
+
+        <div class="ml-12">
+            <div class="mt-2 text-sm text-gray-500">
+                @forelse(auth()->user()->likes->sortByDesc('created_at') as $like)
+                <div>
+                    * {{ $like->likeable->topic ?? 'övrigt' }} ({{ $like->likeable->site ?? 'övrigt' }})
+                </div>
+                @empty
+                    Du verkar inte ha gillat något än.
+                @endforelse
+            </div>
+        </div>
+    </div>
+    <div class="p-6 border-t border-gray-200 md:border-l">
+        <div class="flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 h-8 text-gray-400">
+                <path d="M0 0h24v24H0V0z" fill="none" />
+                <path d="M17 7h-4v2h4c1.65 0 3 1.35 3 3s-1.35 3-3 3h-4v2h4c2.76 0 5-2.24 5-5s-2.24-5-5-5zm-6 8H7c-1.65 0-3-1.35-3-3s1.35-3 3-3h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-2zm-3-4h8v2H8z" />
+            </svg>
+            <div class="ml-4 text-lg text-gray-600 leading-7 font-semibold">Dina länkar ({{ $urls->count() }})</div>
         </div>
 
         <!-- urls -->
         <div class="ml-12">
-            <h2 class="text-2xl">Dina länkar ({{ $urls->count() }})</h2>
-            <div class="mt-2 text-sm text-gray-500 divide-y divide-solid">
-                @forelse($urls as $url)
-                <div class="pt-5 pb-5">
-                    <span class="font-bold">
-                        <a href="{{ route('url.show', $url) }}" class="underline text-indigo-500">{{ $url->topic }}</a>
-                    </span>
-                    <span class="float-right">{{ $url->created_at }}</span>
+            <div class="mt-2 text-sm text-gray-500">
+                <div class="mt-2 text-sm text-gray-500 divide-y divide-solid">
+                    @forelse($urls->sortByDesc('created_at') as $url)
+                    <div class="pt-5 pb-5">
+                        <span class="font-bold">
+                            <a href="{{ route('url.show', $url) }}" class="underline text-indigo-500">{{ $url->topic }}</a> ({{ ($url->site) }})
+                        </span>
+                        <span class="float-right">{{ $url->created_at }}</span>
+                    </div>
+                    @empty
+                    Du verkar inte ha gjort några inlägg.
+                    @endforelse
                 </div>
-                @empty
-                Du verkar inte ha gjort några inlägg.
-                @endforelse
             </div>
-
         </div>
     </div>
 </div>

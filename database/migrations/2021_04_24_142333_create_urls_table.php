@@ -14,9 +14,9 @@ class CreateUrlsTable extends Migration
     public function up()
     {
         Schema::create('urls', function (Blueprint $table) {
-            $table->id();
-            // $table->uuid('uuid')->primary()->unique();
-            $table->foreignId('user_id')->constrained()->nullable()->onDelete('cascade');;
+            // $table->id();
+            $table->uuid('id')->primary();
+            $table->foreignId('user_id')->constrained()->nullable()->onDelete('cascade');
             $table->string('topic');
             $table->string('url')->unique();
             $table->string('site');
