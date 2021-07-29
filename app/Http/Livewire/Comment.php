@@ -3,9 +3,9 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\UserCommentedToComment;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class Comment extends Component
 {

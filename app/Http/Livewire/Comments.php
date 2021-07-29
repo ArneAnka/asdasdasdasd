@@ -26,11 +26,14 @@ class Comments extends Component
     {
         $this->validate(['newCommentState.body' => 'required']);
 
-        // Send a notification to the comment owner, but not if it is me whos made the comment
+        // Send a notification to the model owner, but not if it is me whos made the model.
+        // And also, if the model is news, dont send notification at all!
         // Todo: move to model?
-
-        if ($this->model->user != auth()->user()) {
-            Notification::send($this->model->user, new CommentToModel($this->model));
+        $class_namn = class_basename($this->model);
+        if($class_namn != 'News'){
+            if ($this->model->user != auth()->user()) {
+                Notification::send($this->model->user, new CommentToModel($this->model));
+            }
         }
 
         $comment = $this->model->comments()->make($this->newCommentState);
