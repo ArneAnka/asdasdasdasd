@@ -42,7 +42,8 @@ class ContentComponent extends Component
 
         $data = $news->merge($urls)->merge($posts);
 
-        $data = $data->sortByDesc('created_at')->sortByDesc('sticky')->values()->paginate(50);
+        // $data = $data->sortByDesc('created_at')->sortByDesc('sticky')->paginate(50);
+        $data = $data->sortBy('created_at', SORT_REGULAR, true)->sortByDesc('sticky')->paginate(50);
 
         $data->each(function($item, $key){
             $item->user_has_liked = $item->likers->contains(auth()->user()) ? true : false;
