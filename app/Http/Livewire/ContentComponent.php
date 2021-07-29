@@ -40,12 +40,12 @@ class ContentComponent extends Component
         $posts = Post::search('topic', $this->search)->latest()->get();
         $urls = Url::search('topic', $this->search)->latest()->get();
 
-        $data = $news->merge($urls)->merge($posts);
+        $data = $news->merge($urls)->merge($posts)->sortBy('created_at', SORT_REGULAR, true)->sortByDesc('sticky');
 
         // $data = $data->sortByDesc('created_at')->sortByDesc('sticky')->paginate(50);
-        $data = $data->sortBy('created_at', SORT_REGULAR, true)->sortByDesc('sticky')->paginate(50);
+        $data = $data->paginate(50);
 
-        $data->each(function($item, $key){
+        $data->each(function($item){
             $item->user_has_liked = $item->likers->contains(auth()->user()) ? true : false;
         });
 
