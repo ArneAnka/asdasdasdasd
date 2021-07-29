@@ -46,7 +46,7 @@ class ContentComponent extends Component
         // $data = $data->sortBy('created_at', SORT_REGULAR, true)->sortBy('sticky', SORT_REGULAR, true)->values()->paginate(50);
 
         $data = $data->sortBy(function ($collection, $key) {
-            return $collection['created_at'] . $collection['sticky'];
+            return $collection['sticky'] . $collection['created_at'];
         },SORT_REGULAR, true)->paginate(50);
 
         $data->each(function($item){
