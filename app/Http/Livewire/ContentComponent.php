@@ -43,7 +43,11 @@ class ContentComponent extends Component
         $data = $news->merge($urls)->merge($posts);
 
         // $data = $data->sortByDesc('created_at')->sortByDesc('sticky')->paginate(50);
-        $data = $data->sortBy('created_at', SORT_REGULAR, true)->sortBy('sticky', SORT_REGULAR, true)->values()->paginate(50);
+        // $data = $data->sortBy('created_at', SORT_REGULAR, true)->sortBy('sticky', SORT_REGULAR, true)->values()->paginate(50);
+
+        $data = $data->sortBy(function ($collection, $key) {
+            return $collection['created_at'] . $collection['sticky'];
+        },SORT_REGULAR, true)->paginate(50);
 
         $data->each(function($item){
             $item->user_has_liked = $item->likers->contains(auth()->user()) ? true : false;
