@@ -18,7 +18,7 @@ class Comment extends Model
     {
         parent::boot();
         static::creating(function ($model) {
-            $model->ip_address = Request::getClientIp();
+            $model->ip_address = Request::getClientIp(); # Ip adress
             $model->{$model->getKeyName()} = (string) Str::uuid();
         });
     }

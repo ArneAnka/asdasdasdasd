@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class ReplyToComment extends Notification
+class CommentToModel extends Notification
 {
     use Queueable;
 
@@ -16,9 +16,9 @@ class ReplyToComment extends Notification
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($model)
     {
-        //
+        $this->model = $model;
     }
 
     /**
@@ -29,7 +29,7 @@ class ReplyToComment extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['database'];
     }
 
     /**
@@ -40,10 +40,7 @@ class ReplyToComment extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+        //
     }
 
     /**
@@ -55,7 +52,9 @@ class ReplyToComment extends Notification
     public function toArray($notifiable)
     {
         return [
-            //
+            'type' => class_basename($this->model),
+            'id' => $this->model->id,
+            'topic' => $this->model->topic
         ];
     }
 }

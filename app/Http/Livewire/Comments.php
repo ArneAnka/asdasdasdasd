@@ -4,6 +4,8 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use Livewire\WithPagination;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\CommentToModel;
 
 class Comments extends Component
 {
@@ -23,6 +25,13 @@ class Comments extends Component
     public function postComment()
     {
         $this->validate(['newCommentState.body' => 'required']);
+
+        // Send a notification to the comment owner, but not if it is me whos made the comment
+        // Todo: move to model?
+
+        if ($this->model->user != auth()->user()) {
+            Notification::send($this->model->user, new CommentToModel($this->model));
+        }
 
         $comment = $this->model->comments()->make($this->newCommentState);
         $comment->user()->associate(auth()->user());
