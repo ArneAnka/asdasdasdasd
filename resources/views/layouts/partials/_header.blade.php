@@ -7,14 +7,19 @@
             <span class="hidden md:inline-block md:border-l md:pl-5 ml-5">Aggregerad handelsinformation</span>
             <span class="float-right">
                 @if (Route::has('login'))
-                @auth
-                <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 underline">Dashboard</a>
-                @else
-                <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Login</a>
-                @if (Route::has('register'))
-                <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
-                @endif
-                @endauth
+                    @auth
+                        <div>
+                            <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 underline">Dashboard</a>
+                        @if(auth()->user()->unreadNotifications()->count())
+                            <span class="absolute inline-block w-3 h-3 bg-yellow-300 border-2 border-white rounded-full"></span>
+                        @endif
+                        </div>
+                    @else
+                        <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Login</a>
+                        @if (Route::has('register'))
+                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
+                        @endif
+                    @endauth
                 @endif
             </span>
         </div>

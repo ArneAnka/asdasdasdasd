@@ -18,7 +18,7 @@
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.3/dist/alpine.js" defer></script>
     @if (App::environment('production'))
-    @include ('layouts.partials._analytics')
+        @include ('layouts.partials._analytics')
     @endif
 </head>
 
