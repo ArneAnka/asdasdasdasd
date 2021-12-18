@@ -60,7 +60,7 @@ class Url extends Model
             'id',
             'id',
             'user_id'
-        )->where('likeable_type', Urls::class)
+        )->where('likeable_type', Url::class)
             ->groupBy('likes.user_id', 'users.id', 'likes.likeable_id');
     }
 }

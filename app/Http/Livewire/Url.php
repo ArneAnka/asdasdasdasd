@@ -27,6 +27,8 @@ class Url extends Component
         $like->user()->associate(auth()->user());
 
         $like->save();
+
+        $this->emit('liked');
     }
 
     public function deleteUrls()
