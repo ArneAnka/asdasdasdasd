@@ -11,10 +11,6 @@
       <livewire:market-data />
     </div>
 
-    <div class="bg-white mt-5 p-4 rounded shadow">
-      <livewire:covid19-stats />
-    </div>
-
     <livewire:content-component />
   </div>
 
