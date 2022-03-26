@@ -32,3 +32,25 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
     return view('dashboard', ['posts' => $posts, 'urls' => $urls]);
 })->name('dashboard');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/notifications', function () {
+    return view('user.notifications');
+})->name('notifications');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/posts', function () {
+    $posts = auth()->user()->posts;
+    $posts = $posts->sortByDesc('created_at');
+
+    return view('user.posts', ['posts' => $posts]);
+})->name('posts');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/links', function () {
+    $urls = auth()->user()->urls;
+    $urls = $urls->sortByDesc('created_at');
+
+    return view('user.links', ['urls' => $urls]);
+})->name('links');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/liked', function () {
+    return view('user.liked');
+})->name('liked');

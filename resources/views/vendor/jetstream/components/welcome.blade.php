@@ -1,7 +1,5 @@
 <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
-    <div class="text-gray-500">
-        Dina förehavanden och händelser
-    </div>
+    Notifieringar
 </div>
 
 <div class="bg-gray-200 bg-opacity-25 grid grid-cols-1 md:grid-cols-2">

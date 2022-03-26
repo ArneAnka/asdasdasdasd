@@ -17,8 +17,29 @@
                     </x-jet-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('welcome') }}" :active="request()->routeIs('Welcome')">
+                    <x-jet-nav-link href="{{ route('welcome') }}" :active="request()->routeIs('welcome')">
                         Startsida
+                    </x-jet-nav-link>
+                </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{ route('notifications') }}" :active="request()->routeIs('notifications')">
+                        Notifieringar
+                    </x-jet-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{ route('posts') }}" :active="request()->routeIs('posts')">
+                        Dina inlägg
+                    </x-jet-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{ route('links') }}" :active="request()->routeIs('links')">
+                        Dina länkar
+                    </x-jet-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{ route('liked') }}" :active="request()->routeIs('liked')">
+                        Gillade
                     </x-jet-nav-link>
                 </div>
             </div>
@@ -125,12 +146,36 @@
                 {{ __('Dashboard') }}
             </x-jet-responsive-nav-link>
         </div>
+
         <div class="pt-2 pb-3 space-y-1">
             <x-jet-nav-link href="{{ route('welcome') }}" :active="request()->routeIs('Welcome')">
                 Startsida
             </x-jet-nav-link>
         </div>
 
+        <div class="pt-2 pb-3 space-y-1">
+            <x-jet-nav-link href="{{ route('notifications') }}" :active="request()->routeIs('notifications')">
+                Notifieringar
+            </x-jet-nav-link>
+        </div>
+
+        <div class="pt-2 pb-3 space-y-1">
+            <x-jet-nav-link href="{{ route('posts') }}" :active="request()->routeIs('posts')">
+                Dina inlägg
+            </x-jet-nav-link>
+        </div>
+
+        <div class="pt-2 pb-3 space-y-1">
+            <x-jet-nav-link href="{{ route('links') }}" :active="request()->routeIs('links')">
+                Dina länkar
+            </x-jet-nav-link>
+        </div>
+
+        <div class="pt-2 pb-3 space-y-1">
+            <x-jet-nav-link href="{{ route('liked') }}" :active="request()->routeIs('liked')">
+                Gillade
+            </x-jet-nav-link>
+        </div>
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">
             <div class="flex items-center px-4">
